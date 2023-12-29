@@ -10,11 +10,13 @@ typedef std::vector<VI> VVI;
 // i.e. the minimizer assumes the maximizer will always play the move that
 // maximizes the amount of steps, and vice versa.
 
-void testcase() {
+void testcase()
+{
   int n, m, r, b; std::cin >> n >> m >> r >> b;
 
   VVI transitions(n+1);
-  for (int i = 0; i < m; i++) {
+  for (int i = 0; i < m; i++)
+  {
     int u, v; std::cin >> u >> v;
     transitions[u].push_back(v);
   }
@@ -32,8 +34,10 @@ void testcase() {
   // and know that the minimum and maximum amount of steps at vertex j is always
   // correct, since it can no longer be changed if we have already considered
   // it.
-  for (int i = n-1; i >= 1; i--) {
-    for (int neighbor : transitions[i]) {
+  for (int i = n-1; i >= 1; i--)
+  {
+    for (int neighbor : transitions[i])
+    {
       // The minimizer assumes the maximizer plays optimally, thus the minimizer
       // wants to choose the step that minimizes the maximum steps in the next
       // neighbor.
@@ -49,17 +53,14 @@ void testcase() {
   // The black meeple for Moriarty.
   int moriarty = mini[b];
 
-  if (sherlock < moriarty)
-    std::cout << 0 << std::endl;
-  else if (moriarty < sherlock)
-    std::cout << 1 << std::endl;
-  else if (sherlock % 2 == 1)
-    std::cout << 0 << std::endl;
-  else
-    std::cout << 1 << std::endl;
+  if (sherlock < moriarty) std::cout << 0 << std::endl;
+  else if (moriarty < sherlock) std::cout << 1 << std::endl;
+  else if (sherlock % 2 == 1) std::cout << 0 << std::endl;
+  else std::cout << 1 << std::endl;
 }
 
-int main() {
+int main()
+{
   std::ios_base::sync_with_stdio(false);
   int t; std::cin >> t;
   while (t--) testcase();
