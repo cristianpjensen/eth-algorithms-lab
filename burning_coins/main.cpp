@@ -1,47 +1,42 @@
 #include <bits/stdc++.h>
 
 // Time complexity: O(n^2).
-// There are n layers. Each layer d has 2 + d - 1 values that need to be
-// computed. The maximum value of d is n, so each layer has O(n) complexity
-// which has to be computed n times, thus the time complexity is O(n^2).
 
 typedef std::vector<int> VI;
 typedef std::vector<VI> VVI;
 
-int minimax(VI& values, VVI& memo, int n, int left, int right)
+int minimax(VVI& memo, VI& values, bool maxi, int left, int right)
 {
-  // The current layer is the amount of times that has been shifted left and
-  // right.
-  int layer = left + (n - 1) - right;
-
-  // The players alternate with our player starting.
-  bool maxi = layer % 2 == 0;
-
   // Base case
   if (left == right)
-    return values[left] * maxi;
+  {
+    if (maxi)
+      return values[left];
+    else
+      return 0;
+  }
 
-  // All values with the same amount of left shift and layer are the exact same,
-  // since the right shift for this layer is also the same for all of these.
-  if (memo[layer][left] != -1)
-    return memo[layer][left];
+  // Check if memoized
+  if (memo[left][right] != -1)
+    return memo[left][right];
 
+  // Add value of picked coin if maxi, otherwise not
   if (maxi)
   {
-    memo[layer][left] = std::max(
-      minimax(values, memo, n, left + 1, right) + values[left],
-      minimax(values, memo, n, left, right - 1) + values[right]
+    memo[left][right] = std::max(
+      minimax(memo, values, false, left + 1, right) + values[left],
+      minimax(memo, values, false, left, right - 1) + values[right]
     );
   }
   else
   {
-    memo[layer][left] = std::min(
-      minimax(values, memo, n, left + 1, right),
-      minimax(values, memo, n, left, right - 1)
+    memo[left][right] = std::min(
+      minimax(memo, values, true, left + 1, right),
+      minimax(memo, values, true, left, right - 1)
     );
   }
 
-  return memo[layer][left];
+  return memo[left][right];
 }
 
 void testcase()
@@ -52,7 +47,7 @@ void testcase()
     std::cin >> values[i];
 
   VVI memo(n, VI(n, -1));
-  std::cout << minimax(values, memo, n, 0, n-1) << std::endl;
+  std::cout << minimax(memo, values, true, 0, n-1) << std::endl;
 }
 
 int main()
