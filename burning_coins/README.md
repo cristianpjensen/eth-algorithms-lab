@@ -22,6 +22,10 @@ actions, and do not add the value of the coin.
 The base case is when there is one more coin to pick, i.e. `left == right`.
 Then, we return the value of the coin if it is maxi's turn, otherwise return 0.
 
+ - State space: Coins taken from each side, defined by `left, right`.
+ - Recurrence relationship: If maxi: `rec(left, right) = max(rec(left+1, right) value[left], rec(left, right-1) + value[right])`, if mini: `rec(left, right) = min(rec(left+1, right), rec(left, right-1))`.
+ - Base case: If maxi: `rec(x, x) = value[x]`, if mini: `rec(x, x) = 0`.
+
 ## Times
 
 ```
