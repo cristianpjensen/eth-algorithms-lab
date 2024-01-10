@@ -25,10 +25,12 @@ happiness of those A potions sums to at least `H`. We can do this with dynamic
 programming with the following state space:
  - `j`: Amount of A potions picked;
  - `h`: Minimum amount of happiness.
+
 And, the value is the maximum amount of power. The recurrence relationship is
 then that we take the maximum of all possible sequences that result in `j`
-potions picked and `h` happiness, i.e., $P_{j,h} = \max_{(p',h') \in
-\text{Potions A}} P_{j-1,h-h'} + p'$.
+potions picked and `h` happiness, i.e., $$P_{j,h} = \max_{(p',h') \in \text{Potions A}} P_{j-1,h-h'} + p'.$$
+Make sure to do this in decreasing order of `j`, since otherwise A potions might
+be picked multiple times.
 
 Then, for every `j` A potions that results in at least `H` happiness and has a
 maximum of `p` power, we find out whether it is possible to pick `(p - P) / b`
