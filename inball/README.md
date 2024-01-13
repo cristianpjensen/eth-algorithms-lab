@@ -24,7 +24,7 @@ satisfy the following constraint: $r \leq \frac{|\vec{a}_i^\top \vec{x} -
 b_i|}{\lVert \vec{a} \rVert}$. Since we have to satisfy $\vec{a}_i^\top \vec{x}
 \leq b_i$, we know $|\vec{a}_i^\top \vec{x} - b_i| = b_i - \vec{a}_i^\top
 \vec{x}$. So, we can simplify two constraints into a single constraint:
-$\vec{a}_i^\top \vec{x} - \lVert \vec{a} \rVert r \leq b_i$.
+$\vec{a}_i^\top \vec{x} + \lVert \vec{a} \rVert r \leq b_i$.
 
 Then, we solve the linear program by maximizing the radius.
 
