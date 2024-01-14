@@ -35,15 +35,23 @@ For the third constraint, we need to make sure the total horizontal distance to
 the sewer line does not exceed `s`. The point that is on the sewer line and the
 same horizontal line as point $(x,y)$ is the following: $(-by-c, y)$ ($a=1$). So,
 we need to satisfy the following constraint:
+
 $$ \sum_{x,y} | x - (-by-c) | \leq s. $$
+
 We know that all the noble houses are on the left and the common houses on the
 right, thus the constraint becomes the following:
-$$ \left( \sum^{\text{common}}_{x,y} x - (-by - c) \right) + \left( \sum^{\text{noble}}_{x,y} (-by-c) - x \right) \leq s.$$
+
+$$ \left( \sum_{x,y}^{\text{common}} x - (-by - c) \right) + \left( \sum_{x,y}^{\text{noble}} (-by-c) - x \right) \leq s. $$
+
 This simplifies to the following linear programming constraint:
+
 $$ (Y_c - Y_n) \cdot b + (m - n) \cdot c \leq s - (X_c - X_n), $$
+
 where $Y_n$ is the sum of y coordinates of the nobles, $Y_c$ is the sum of y
 coordinates of the commoners, $X_n$ is the sum of x coordinates of the nobles,
 $X_c$ is the sum of x coordinates of the commoners.
+
+
 
 For the fourth constraint, we need to make sure they meet at a right angle. We
 know that $a_s = b_w = 1$, so we need the following constraint: $a_w = -b_s$, i.e.,
