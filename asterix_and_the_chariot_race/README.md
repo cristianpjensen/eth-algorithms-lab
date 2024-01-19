@@ -15,7 +15,8 @@ cost for saving all the vertices?
 ## Implementation
 
 Each vertex can be seen as a subtree with the same problem statement. We need
-to compute the following values for each subtree:
+to compute the following values for each subtree, which we can use for a
+recurrence relationship:
  - $a$: Minimum cost such that the root is repaired.
  - $b$: Minimum cost such that the root is saved.
  - $c$: Minimum cost such that the children of the root are saved.
@@ -25,8 +26,8 @@ We then have the following recurrence relationship,
 $$
 \begin{align\*}
     a_u &= \text{cost}(u) + \sum_{v\in\text{children}(u)} c_v \\
-    b_u &= \min \{ a_u, \min_{v\in\text{children}(u)} a_v + \sum_{v'\neq v} b_{v'} \} \\
-    c_u &= \min \{ b_u, \sum_{v\in\text{children}(u)} b_v \}
+    b_u &= \min \left\\{ a_u, \min_{v\in\text{children}(u)} a_v + \sum_{v'\neq v} b_{v'} \right\\} \\
+    c_u &= \min \left\\{ b_u, \sum_{v\in\text{children}(u)} b_v \right\\}
 .\end{align\*}
 $$ 
 
