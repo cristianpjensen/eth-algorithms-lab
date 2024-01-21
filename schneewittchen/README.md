@@ -45,7 +45,7 @@ where $v_{ij}$ is the amount of material $j$ we can get through mine $i$ for fre
 This can be rederived to the following constraint,
 
 $$
-\forall i,j : 2x_{ij} - \sum_{i'} x_{i'j} \leq v_{ij}.
+\forall i,j : 2x_{ij} - \sum_{i'} x_{i'j} \leq 2v_{ij}.
 $$
 
 We also need to add this constraint to the root.
