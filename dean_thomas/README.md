@@ -17,10 +17,6 @@ figure out whether they can stay at a safe distance from the dementors.
 
 ## Implementation
 
-I did not solve the last test set, because I already reached the time limit with
-my implementation for the first three test sets, and I do not think there is a
-way to make my current code faster.
-
 The first test case is easy. Just do a triangulation of the dementor locations
 and check whether the wizard can stay there during the night. The next two are
 also not hard (they are very similar to H1N1). We need to figure out what the
@@ -32,16 +28,20 @@ maximized. We then precompute this bottleneck from any face to the infinite face
 (i.e., outside of the convex hull) by using a modified version of Dijkstra's
 algorithm.
 
-The last test set requires finding what the largest face is that we can reach
-from a face (take minimum with bottleneck to get there). For this we can still
-use Dijkstra's. Then, if we can get to a larger face than the bottleneck outside
-the convex hull, we will do that. This can again be precomputed.
+The last test set adds some complexity where we also need to consider larger
+faces that we might be able to reach, rather than getting outside the convex
+hull. We do this by adding the faces with their face size to the priority queue,
+just as we add the infinite face to it (with its infinitely large face size). We
+have to add the face size divided by 2 (which is just the radius), though, so it
+is in the same scale as the edges. We can compute the radius of a face by
+computing the distance of the dual point (furthest away from vertices that make
+up face edges) to any of the vertices of the face.
 
 ## Times
 
 ```
-Test set 1 (30 pts / 2 s) : Correct answer      (1.658s)
-Test set 2 (30 pts / 2 s) : Correct answer      (1.991s)
-Test set 3 (20 pts / 2 s) : Correct answer      (1.811s)
-Test set 4 (20 pts / 2 s) : Time limit exceeded
+Test set 1 (30 pts / 2 s) : Correct answer      (1.382s)
+Test set 2 (30 pts / 2 s) : Correct answer      (0.657s)
+Test set 3 (20 pts / 2 s) : Correct answer      (1.091s)
+Test set 4 (20 pts / 2 s) : Correct answer      (1.42s)
 ```
