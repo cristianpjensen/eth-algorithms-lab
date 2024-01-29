@@ -17,15 +17,15 @@ get to the final position.
 ## Implementation
 
 This is a linear program where the variables are the new position `(X, Y)` and
-maximum time `T`. We need to make sure that the new position is on the same
+minimum time `t_{\min}`. We need to make sure that the new position is on the same
 side of all the lines as the initial position. We also need to make sure that
-`T` does not exceed any of the times that the line takes to get to `(X, Y)`. We
+`t_{\min}` does not exceed any of the times that the line takes to get to `(X, Y)`. We
 can do this with one constraint per line. Namely, we need the signed distance to
-keep the same sign (and `T >= 0`), and make sure that `T` does not exceed
+keep the same sign (and `t_{\min} >= 0`), and make sure that `t_{\min}` does not exceed
 `|dist| / v`.
 
 $$
-\frac{|dist([X,Y], \ell_i)|}{v} \leq T
+t_{\min} \leq \frac{|dist([X,Y], \ell_i)|}{v}
 $$
 
 ## Times
