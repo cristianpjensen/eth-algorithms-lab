@@ -2,7 +2,7 @@
 
 ```
 type: greedy
-runtime: O(n)
+runtime: O(n log n)
 ```
 
 ## Problem
